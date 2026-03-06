@@ -11,7 +11,7 @@ public class ApiTests {
                 .andReturn()
                 .jsonPath();
 
-        String secondMessageText = response.getString("messages[1].message");
+        String secondMessageText = response.getString("messages[0].message");
 
         System.out.println(secondMessageText);
     }
