@@ -30,4 +30,29 @@ public class ApiTests {
 
         System.out.println(location);
     }
+
+    @Test
+    public void longRedirectTest() {
+
+        String location = "https://playground.learnqa.ru/api/long_redirect";
+
+        Integer ststusCode = 301;
+
+        while (ststusCode != 200 && location != null){
+            Response response = RestAssured
+                    .given()
+                    .redirects()
+                    .follow(false)
+                    .get(location)
+                    .andReturn();
+
+            location = response.getHeader("Location");
+
+            ststusCode = response.getStatusCode();
+
+            System.out.println(location);
+            System.out.println(response.getStatusCode());
+
+        }
+    }
 }
