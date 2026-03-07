@@ -52,7 +52,6 @@ public class ApiTests {
 
             System.out.println(location);
             System.out.println(response.getStatusCode());
-
         }
     }
 }
