@@ -1,6 +1,7 @@
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class ApiTests {
@@ -23,7 +24,7 @@ public class ApiTests {
                 .given()
                 .redirects()
                 .follow(false)
-                .get(" https://playground.learnqa.ru/api/long_redirect")
+                .get("https://playground.learnqa.ru/api/long_redirect")
                 .andReturn();
 
         String location = response.getHeader("Location");
@@ -38,7 +39,7 @@ public class ApiTests {
 
         Integer ststusCode = 301;
 
-        while (ststusCode != 200 && location != null){
+        while (ststusCode != 200 && location != null) {
             Response response = RestAssured
                     .given()
                     .redirects()
@@ -53,5 +54,37 @@ public class ApiTests {
             System.out.println(location);
             System.out.println(response.getStatusCode());
         }
+    }
+
+    @Test
+    public void token() throws InterruptedException {
+        JsonPath response = RestAssured
+                .get("https://playground.learnqa.ru/ajax/api/longtime_job")
+                .andReturn()
+                .jsonPath();
+
+        String token = response.getString("token");
+
+        String seconds = response.getString("seconds");
+
+        JsonPath responseTaskNotReady = RestAssured
+                .given()
+                .queryParams("token", token)
+                .get("https://playground.learnqa.ru/ajax/api/longtime_job")
+                .andReturn()
+                .jsonPath();
+
+        Assertions.assertEquals("Job is NOT ready", responseTaskNotReady.getString("status"));
+
+        Thread.sleep(Integer.parseInt(seconds) * 1000L);
+
+        JsonPath responseTaskReady = RestAssured
+                .given()
+                .queryParams("token", token)
+                .get("https://playground.learnqa.ru/ajax/api/longtime_job")
+                .andReturn()
+                .jsonPath();
+
+        Assertions.assertEquals("Job is ready", responseTaskReady.getString("status"));
     }
 }
