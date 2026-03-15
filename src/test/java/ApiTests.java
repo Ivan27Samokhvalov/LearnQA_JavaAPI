@@ -3,18 +3,16 @@ import io.restassured.config.RestAssuredConfig;
 import io.restassured.config.SSLConfig;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import lib.BaseTestCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class ApiTests {
+public class ApiTests extends BaseTestCase {
 
     @Test
     public void jsonParsingTest() {
@@ -206,9 +204,19 @@ public class ApiTests {
     }
 
     @Test
-    public void checkLengthString() {
+    public void checkLengthStringTest() {
         String hello = "Hello, world";
 
         assertTrue(hello.length() > 15, "Length string < 15");
+    }
+
+    @Test
+    public void fixCookieTest(){
+        Response response = RestAssured
+                .given()
+                .get("https://playground.learnqa.ru/api/homework_cookie")
+                .andReturn();
+
+        Map <String, String> cookie = new HashMap<>(getCookie(response));
     }
 }
