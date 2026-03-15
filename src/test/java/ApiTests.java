@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class ApiTests {
 
     @Test
@@ -201,5 +203,12 @@ public class ApiTests {
 
                 break;
         }
+    }
+
+    @Test
+    public void checkLengthString() {
+        String hello = "Hello, world";
+
+        assertTrue(hello.length() > 15, "Length string < 15");
     }
 }
