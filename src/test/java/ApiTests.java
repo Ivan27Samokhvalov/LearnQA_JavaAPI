@@ -1,6 +1,7 @@
 import io.restassured.RestAssured;
 import io.restassured.config.RestAssuredConfig;
 import io.restassured.config.SSLConfig;
+import io.restassured.http.Headers;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import lib.BaseTestCase;
@@ -218,5 +219,15 @@ public class ApiTests extends BaseTestCase {
                 .andReturn();
 
         Map <String, String> cookie = new HashMap<>(getCookie(response));
+    }
+
+    @Test
+    public void fixHeaderTest(){
+        Response response = RestAssured
+                .given()
+                .get("https://playground.learnqa.ru/api/homework_cookie")
+                .andReturn();
+
+        Headers responseHeaders = getHeaders(response);
     }
 }
