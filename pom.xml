@@ -25,6 +25,13 @@
         </dependency>
 
         <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.25.3</version> <!-- Можно использовать последнюю версию -->
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
             <version>${aspectj.version}</version>
