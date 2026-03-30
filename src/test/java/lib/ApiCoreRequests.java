@@ -35,7 +35,7 @@ public class ApiCoreRequests {
     }
 
     @Step("Отправить запрос на получение пользователя GET https://playground.learnqa.ru/api/user/{id}")
-    public Response getUser(Integer id) {
+    public Response getUser(String id) {
         return RestAssured
                 .get("https://playground.learnqa.ru/api/user/" + id)
                 .andReturn();
@@ -77,6 +77,16 @@ public class ApiCoreRequests {
                 .given()
                 .body(editUserData)
                 .put("https://playground.learnqa.ru/api/user/" + id)
+                .andReturn();
+    }
+
+    @Step("Удаление пользователя авторизованным пользователем PUT https://playground.learnqa.ru/api/user/{id}")
+    public Response deleteAuthUser(String id, String authHeader, String authCookie) {
+        return RestAssured
+                .given()
+                .header("x-csrf-token", authHeader)
+                .cookie("auth_sid", authCookie)
+                .delete("https://playground.learnqa.ru/api/user/" + id)
                 .andReturn();
     }
 }
