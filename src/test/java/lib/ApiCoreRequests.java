@@ -21,7 +21,7 @@ public class ApiCoreRequests {
         return RestAssured
                 .given()
                 .body(userData)
-                .post("https://playground.learnqa.ru/api/user/")
+                .post("https://playground.learnqa.ru/api_dev/user/")
                 .andReturn();
     }
 
@@ -30,14 +30,14 @@ public class ApiCoreRequests {
         return RestAssured
                 .given()
                 .body(userData)
-                .post("https://playground.learnqa.ru/api/user/")
+                .post("https://playground.learnqa.ru/api_dev/user/")
                 .andReturn();
     }
 
     @Step("Отправить запрос на получение пользователя GET https://playground.learnqa.ru/api/user/{id}")
     public Response getUser(String id) {
         return RestAssured
-                .get("https://playground.learnqa.ru/api/user/" + id)
+                .get("https://playground.learnqa.ru/api_dev/user/" + id)
                 .andReturn();
     }
 
@@ -47,7 +47,7 @@ public class ApiCoreRequests {
                 .given()
                 .header("x-csrf-token", header)
                 .cookie("auth_sid", cookie)
-                .get("https://playground.learnqa.ru/api/user/" + id)
+                .get("https://playground.learnqa.ru/api_dev/user/" + id)
                 .andReturn();
     }
 
@@ -56,7 +56,7 @@ public class ApiCoreRequests {
         return RestAssured
                 .given()
                 .body(authData)
-                .post("https://playground.learnqa.ru/api/user/login")
+                .post("https://playground.learnqa.ru/api_dev/user/login")
                 .andReturn();
     }
 
@@ -67,7 +67,7 @@ public class ApiCoreRequests {
                 .header("x-csrf-token", authHeader)
                 .cookie("auth_sid", authCookie)
                 .body(editUserData)
-                .put("https://playground.learnqa.ru/api/user/" + id)
+                .put("https://playground.learnqa.ru/api_dev/user/" + id)
                 .andReturn();
     }
 
@@ -76,7 +76,7 @@ public class ApiCoreRequests {
         return RestAssured
                 .given()
                 .body(editUserData)
-                .put("https://playground.learnqa.ru/api/user/" + id)
+                .put("https://playground.learnqa.ru/api_dev/user/" + id)
                 .andReturn();
     }
 
@@ -86,7 +86,7 @@ public class ApiCoreRequests {
                 .given()
                 .header("x-csrf-token", authHeader)
                 .cookie("auth_sid", authCookie)
-                .delete("https://playground.learnqa.ru/api/user/" + id)
+                .delete("https://playground.learnqa.ru/api_dev/user/" + id)
                 .andReturn();
     }
 }

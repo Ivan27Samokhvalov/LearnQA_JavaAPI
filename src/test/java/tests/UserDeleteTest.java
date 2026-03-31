@@ -1,8 +1,6 @@
 package tests;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
+import io.qameta.allure.*;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
 import lib.Assertions;
@@ -14,13 +12,16 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-@Epic("deleteUser cases")
-@Feature("deleteUser")
+@Epic("CRUD User")
+@Feature("DELETE")
+@Story("Delete User")
+@Severity(SeverityLevel.NORMAL)
 public class UserDeleteTest extends BaseTestCase {
 
     private final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
 
     @Test
+    @Owner("Ivan Samokhvalov")
     @Description("Попытка удаления пользователя по ID 2")
     @DisplayName("Негаттивный тест удаления данных пользователя")
     public void deleteUserId2() {
@@ -39,6 +40,7 @@ public class UserDeleteTest extends BaseTestCase {
     }
 
     @Test
+    @Owner("Ivan Samokhvalov")
     @Description("Удаление пользователя")
     @DisplayName("Позитивный тест удаления данных пользователя")
     public void positiveDeleteUserTest() {
@@ -63,6 +65,7 @@ public class UserDeleteTest extends BaseTestCase {
     }
 
     @Test
+    @Owner("Ivan Samokhvalov")
     @Description("Удаление пользователя, будучи авторизованными другим пользователем.")
     @DisplayName("Негативный тест удаления данных пользователя")
     public void deleteUserOtherAuthorizationUser() {

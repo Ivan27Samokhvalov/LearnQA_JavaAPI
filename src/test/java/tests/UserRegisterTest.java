@@ -1,8 +1,6 @@
 package tests;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
+import io.qameta.allure.*;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
 import lib.Assertions;
@@ -17,12 +15,15 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 
-@Epic("Authorisation cases")
-@Feature("Authorisation")
+@Epic("CRUD User")
+@Feature("CREATE")
+@Story("User Registration")
+@Severity(SeverityLevel.BLOCKER)
 public class UserRegisterTest extends BaseTestCase {
 
     private final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
 
+    @Owner("Ivan Samokhvalov")
     @Test
     @Description("Создание пользователя с некорректным email - без символа @")
     @DisplayName("Негативный тест авторизации пользователя")
@@ -38,6 +39,7 @@ public class UserRegisterTest extends BaseTestCase {
         Assertions.assertStatusCodeEquals(responseCreateAuth, 400);
     }
 
+    @Owner("Ivan Samokhvalov")
     @ParameterizedTest(name = "Registration without required field")
     @MethodSource("provideNullRegistrationData")
     public void checkNullableFieldError(String email,
@@ -63,6 +65,7 @@ public class UserRegisterTest extends BaseTestCase {
     }
 
     @Test
+    @Owner("Ivan Samokhvalov")
     @Description("Создание пользователя с очень коротким именем в один символ")
     @DisplayName("Негативный тест авторизации пользователя")
     public void createUserWithShortName(){
@@ -78,6 +81,7 @@ public class UserRegisterTest extends BaseTestCase {
     }
 
     @Test
+    @Owner("Ivan Samokhvalov")
     @Description("Создание пользователя с очень длинным именем - длиннее 250 символов")
     @DisplayName("Негативный тест авторизации пользователя")
     public void createUserWithLongName(){

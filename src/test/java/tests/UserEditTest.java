@@ -1,8 +1,6 @@
 package tests;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
+import io.qameta.allure.*;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
 import lib.Assertions;
@@ -14,13 +12,16 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-@Epic("EditUser cases")
-@Feature("EditUser")
+@Epic("CRUD User")
+@Feature("UPDATE")
+@Story("Edit User")
+@Severity(SeverityLevel.CRITICAL)
 public class UserEditTest extends BaseTestCase {
 
     private final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
 
     @Test
+    @Owner("Ivan Samokhvalov")
     @Description("Изменение данных пользователя, будучи неавторизованным")
     @DisplayName("Негаттивный тест изменения данных пользователя")
     public void editUserWithoutAuthorization() {
@@ -37,6 +38,7 @@ public class UserEditTest extends BaseTestCase {
     }
 
     @Test
+    @Owner("Ivan Samokhvalov")
     @Description("Изменение данных пользователя, будучи авторизованными другим пользователем")
     @DisplayName("Негаттивный тест изменения данных пользователя")
     public void editUserAuthorizationOtherUser() {
@@ -63,6 +65,7 @@ public class UserEditTest extends BaseTestCase {
     }
 
     @Test
+    @Owner("Ivan Samokhvalov")
     @Description("Изменить email пользователя, будучи авторизованными тем же пользователем, на новый email без символа @")
     @DisplayName("Негаттивный тест изменения данных пользователя")
     public void editIncorrectEmail() {
@@ -89,6 +92,7 @@ public class UserEditTest extends BaseTestCase {
     }
 
     @Test
+    @Owner("Ivan Samokhvalov")
     @Description("Изменить firstName пользователя, будучи авторизованными тем же пользователем, на очень короткое значение в один символ")
     @DisplayName("Негаттивный тест изменения данных пользователя")
     public void editIncorrectFirstName() {

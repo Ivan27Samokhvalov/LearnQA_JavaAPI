@@ -1,8 +1,6 @@
 package tests;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
+import io.qameta.allure.*;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
 import lib.Assertions;
@@ -14,13 +12,16 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-@Epic("Authorisation cases")
-@Feature("Authorisation")
+@Epic("CRUD User")
+@Feature("GET")
+@Story("User get data")
+@Severity(SeverityLevel.CRITICAL)
 public class UserGetTest extends BaseTestCase {
 
     private final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
 
     @Test
+    @Owner("Ivan Samokhvalov")
     @Description("Авторизованный пользователь получает данные другого пользователя")
     @DisplayName("Позитивный тест получения данных пользователя")
     public void testGetUserDataOtherUseer() {

@@ -1,7 +1,6 @@
 import io.restassured.RestAssured;
 import io.restassured.config.RestAssuredConfig;
 import io.restassured.config.SSLConfig;
-import io.restassured.http.Header;
 import io.restassured.http.Headers;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -16,8 +15,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.*;
 import java.util.stream.Collectors;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ApiTests extends BaseTestCase {
 
